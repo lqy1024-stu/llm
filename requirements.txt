@@ -8,7 +8,7 @@ langchain-core==0.1.36
 langchain-openai==0.1.1
 nltk==3.8.1
 openai==1.13.3
-pip==24.0.1
+pip==24.1.1
 pydantic==2.6.3
 python-dotenv==1.0.1
 qianfan==0.3.3
