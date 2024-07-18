@@ -10,8 +10,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from zhipuai_embedding import ZhipuAIEmbeddings
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv())    # read local .env file
 
+_ = load_dotenv(find_dotenv())    # read local .env file
 zhipuai_api_key = os.environ['ZHIPUAI_API_KEY']
 
 #带有历史记录的问答链
@@ -73,9 +73,10 @@ def get_qa_chain(question:str,zhipuai_api_key:str):
 # Streamlit 应用程序界面
 def main():
     st.title('🦜🔗 动手学大模型应用开发')
-    zhipuai_api_key = st.sidebar.text_input('ZhipuAI API Key', type='password')
+    zhipuai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
     # 添加一个选择按钮来选择不同的模型
+    #selected_method = st.sidebar.selectbox("选择模式", ["qa_chain", "chat_qa_chain", "None"])
     selected_method = st.radio(
         "你想选择哪种模式进行对话？",
         ["qa_chain", "chat_qa_chain"],
@@ -89,6 +90,7 @@ def main():
     if prompt := st.chat_input("Say something"):
         # 将用户输入添加到对话历史中
         st.session_state.messages.append({"role": "user", "text": prompt})
+
         if selected_method == "qa_chain":
             answer = get_qa_chain(prompt,zhipuai_api_key)
         elif selected_method == "chat_qa_chain":
@@ -109,3 +111,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
