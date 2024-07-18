@@ -22,5 +22,3 @@ pymupdf==1.24.0
 unstructured==0.12.6
 chromadb==0.4.14
 spark-ai-python==0.3.15
-langchain_huggingface
-sentence-transformers==2.2.2
