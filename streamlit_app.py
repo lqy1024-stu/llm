@@ -4,6 +4,7 @@ import os
 from langchain_core.output_parsers import StrOutputParser
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
+from langchain_huggingface import HuggingFaceEmbeddings
 import sys
 from langchain.vectorstores.chroma import Chroma
 from langchain.memory import ConversationBufferMemory
