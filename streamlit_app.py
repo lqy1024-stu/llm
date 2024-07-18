@@ -10,6 +10,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from zhipuai_embedding import ZhipuAIEmbeddings
 from dotenv import load_dotenv, find_dotenv
+__import__('pysqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 _ = load_dotenv(find_dotenv())    # read local .env file
 zhipuai_api_key = os.environ['ZHIPUAI_API_KEY']
