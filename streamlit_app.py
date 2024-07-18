@@ -9,6 +9,10 @@ from langchain.vectorstores.chroma import Chroma
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from zhipuai_embedding import ZhipuAIEmbeddings
+from dotenv import load_dotenv, find_dotenv
+_ = load_dotenv(find_dotenv())    # read local .env file
+
+zhipuai_api_key = os.environ['ZHIPUAI_API_KEY']
 
 #带有历史记录的问答链
 def get_chat_qa_chain(question:str,zhipuai_api_key:str):
