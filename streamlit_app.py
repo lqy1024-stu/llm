@@ -4,20 +4,17 @@ import os
 from langchain_core.output_parsers import StrOutputParser
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
-from langchain_huggingface import HuggingFaceEmbeddings
 import sys
 from langchain.vectorstores.chroma import Chroma
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv())    # read local .env file
-
-zhipuai_api_key = os.environ['ZHIPUAI_API_KEY']
+from zhipuai_embedding import ZhipuAIEmbeddings
 
 #带有历史记录的问答链
 def get_chat_qa_chain(question:str,zhipuai_api_key:str):
     # 定义 Embeddings
-    embeddings = HuggingFaceEmbeddings(model_name="Hug/sentence-transformer")
+    embeddings = ZhipuAIEmbeddings()
+    #embeddings = HuggingFaceEmbeddings(model_name="Hug/sentence-transformer")
     # 向量数据库持久化路径
     persist_directory = 'data_base/vector_db/chroma'
     # 加载数据库
@@ -42,7 +39,8 @@ def get_chat_qa_chain(question:str,zhipuai_api_key:str):
 #不带历史记录的问答链
 def get_qa_chain(question:str,zhipuai_api_key:str):
     # 定义 Embeddings
-    embeddings = HuggingFaceEmbeddings(model_name="Hug/sentence-transformer")
+    embeddings = ZhipuAIEmbeddings()
+    #embeddings = HuggingFaceEmbeddings(model_name="Hug/sentence-transformer")
     # 向量数据库持久化路径
     persist_directory = 'data_base/vector_db/chroma'
     # 加载数据库
